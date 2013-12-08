@@ -19,6 +19,10 @@ db.configure({port: 9898, database: "rostestdb"}); // aim at the right rest serv
 //  console.log(a + ": " + ROSLIB[a]);
 //}
 
+// NB using Publish/Subscribe instead of a service for two reasons:-
+// 1. Can't seem to create a service in roslibjs, only consume one
+// 2. The MLJS library is callback based, thus a better match for messaging integration
+
 var ros = new ROSLIB.Ros({
   url : 'ws://localhost:9085'
 });
