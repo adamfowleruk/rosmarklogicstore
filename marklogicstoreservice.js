@@ -8,7 +8,7 @@ var mljs = require("mljs");
 // TODO parameters from command line
 
 var db = new mljs();
-db.configure({port: 9898, database: "rostestdb"}); // aim at the right rest server port, and thus the right DB. 'database' is ignored
+db.configure({port: 9898, database: "rostestdb"}); // aim at the right rest server port, and thus the right DB. 'database' is ignored (only used by create() and exists())
 
 // 2. Create service in ROS using roslibjs
 
@@ -52,7 +52,7 @@ listener.subscribe(function(message) {
   } else {
     // binary
     props.format = "binary";
-    data = ""; // do something to convert the data
+    data = json.data; // do something to convert the data as necessary (assuming it's hex encoded here)
   }
   db.save(data,json.uri,props,function(result) {
     console.log("Save worked?: " + !result.inError);
